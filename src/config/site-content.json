@@ -51,20 +51,6 @@
 	"currentBackgroundImageId": "16a5129869fbeb3d",
 	"socialButtons": [
 		{
-			"id": "github",
-			"type": "github",
-			"value": "https://github.com/Kane-7",
-			"label": "Github",
-			"order": 3
-		},
-		{
-			"id": "juejin",
-			"type": "bilibili",
-			"value": "https://www.bilibili.com/",
-			"label": "",
-			"order": 2
-		},
-		{
 			"id": "email",
 			"type": "email",
 			"value": "17714527@qq.com",
@@ -76,19 +62,33 @@
 			"type": "xiaohongshu",
 			"value": "https://www.xiaohongshu.com/explore?channel_id=homefeed_recommend",
 			"label": "",
+			"order": 2
+		},
+		{
+			"id": "juejin",
+			"type": "bilibili",
+			"value": "https://www.bilibili.com/",
+			"label": "",
+			"order": 3
+		},
+		{
+			"id": "github",
+			"type": "github",
+			"value": "https://github.com/Kane-7",
+			"label": "Github",
 			"order": 4
 		}
 	],
-	"clockShowSeconds": false,
+	"clockShowSeconds": true,
 	"summaryInContent": false,
 	"isCachePem": false,
 	"hideEditButton": false,
-	"enableCategories": true,
+	"enableCategories": false,
 	"currentHatIndex": 1,
 	"hatFlipped": false,
 	"enableChristmas": false,
 	"beian": {
-		"text": "",
+		"text": "津ICP备2026006412号-1",
 		"link": ""
 	}
 }
