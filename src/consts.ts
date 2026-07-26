@@ -11,6 +11,6 @@ export const GITHUB_CONFIG = {
 	OWNER: 'Kane-7',
 	REPO: '2025-blog-public',
 	BRANCH: 'main',
-	APP_ID: '2301595',
+	APP_ID: '4395718',
 	ENCRYPT_KEY: process.env.NEXT_PUBLIC_GITHUB_ENCRYPT_KEY || 'wudishiduomejimo',
 } as const
