@@ -73,9 +73,9 @@
 	"isCachePem": false,
 	"hideEditButton": false,
 	"enableCategories": true,
-	"currentHatIndex": 20,
+	"currentHatIndex": 1,
 	"hatFlipped": false,
-	"enableChristmas": true,
+	"enableChristmas": false,
 	"beian": {
 		"text": "",
 		"link": ""
