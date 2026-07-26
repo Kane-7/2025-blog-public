@@ -31,9 +31,13 @@
 		{
 			"id": "1c7b726fe720679b",
 			"url": "/images/art/1c7b726fe720679b.jpg"
+		},
+		{
+			"id": "e876e46931e3e752",
+			"url": "/images/art/e876e46931e3e752.png"
 		}
 	],
-	"currentArtImageId": "1c7b726fe720679b",
+	"currentArtImageId": "e876e46931e3e752",
 	"backgroundImages": [
 		{
 			"id": "",
@@ -45,21 +49,21 @@
 		{
 			"id": "github",
 			"type": "github",
-			"value": "https://github.com/yysuni",
+			"value": "https://github.com/Kane-7",
 			"label": "Github",
 			"order": 3
 		},
 		{
 			"id": "juejin",
-			"type": "juejin",
-			"value": "https://juejin.cn/user/2427311675422382",
-			"label": "稀土掘金",
+			"type": "bilibili",
+			"value": "https://www.bilibili.com/",
+			"label": "",
 			"order": 2
 		},
 		{
 			"id": "email",
 			"type": "email",
-			"value": "yysuni1001@gmail.com",
+			"value": "17714527@qq.com",
 			"label": "",
 			"order": 1
 		}
