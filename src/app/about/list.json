@@ -1,5 +1,5 @@
 {
 	"title": "关于本站",
-	"description": "一个基于 Github 的现代化博客系统",
-	"content": "📦网站基于 Github 仓库完全存储，所有内容版本可控\n\n🚀无后端，无 serverless function，纯静态站点\n\n✏️文章通过可视化 UI 直接编辑并提交到 Github 仓库\n\n🔑所有用户都可以编辑，提交需要 Owner 的 Private Key\n\n## 技术栈\n\n- Next.js\n- React\n- TypeScript\n- Tailwind CSS\n- Motion\n- Github API"
+	"description": "",
+	"content": "Hi! ✨ I'm Kane\n🌱2004 年 6 月生于国内，计算机专业在读，一名热爱折腾的业余开发者与开源爱好者。\n\n日常热衷于探索新奇技术，空闲时间捣鼓各类有意思的编程项目。\n\n深耕开源生态，习惯使用 VS Code 进行开发，享受开源互助的氛围。\n\n乐于无偿参与趣味开源项目，有靠谱的创意与合作想法，欢迎邮件联系。\n\n长期自研个人小工具与站点，感兴趣的朋友可以一起交流、结伴开发。\n\n闲暇之余喜欢折腾服务器部署、网站搭建，持续完善个人博客与各类小作品。\n\n持续积累前后端开发经验，不断打磨代码，追求简洁高效的实现思路。\n\n## 技术栈\n- Next.js\n- React\n- TypeScript\n- Tailwind CSS\n- Motion\n- Github API"
 }
