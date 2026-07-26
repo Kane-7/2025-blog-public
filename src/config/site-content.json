@@ -42,9 +42,13 @@
 		{
 			"id": "",
 			"url": ""
+		},
+		{
+			"id": "16a5129869fbeb3d",
+			"url": "/images/background/16a5129869fbeb3d.png"
 		}
 	],
-	"currentBackgroundImageId": "",
+	"currentBackgroundImageId": "16a5129869fbeb3d",
 	"socialButtons": [
 		{
 			"id": "github",
@@ -66,6 +70,13 @@
 			"value": "17714527@qq.com",
 			"label": "",
 			"order": 1
+		},
+		{
+			"id": "button-1785044634061",
+			"type": "xiaohongshu",
+			"value": "https://www.xiaohongshu.com/explore?channel_id=homefeed_recommend",
+			"label": "",
+			"order": 4
 		}
 	],
 	"clockShowSeconds": false,
