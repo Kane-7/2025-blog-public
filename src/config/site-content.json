@@ -33,9 +33,13 @@
 		{
 			"id": "e876e46931e3e752",
 			"url": "/images/art/e876e46931e3e752.png"
+		},
+		{
+			"id": "62df56d2722cbef0",
+			"url": "/images/art/62df56d2722cbef0.jpg"
 		}
 	],
-	"currentArtImageId": "e876e46931e3e752",
+	"currentArtImageId": "62df56d2722cbef0",
 	"backgroundImages": [
 		{
 			"id": "",
@@ -44,9 +48,13 @@
 		{
 			"id": "16a5129869fbeb3d",
 			"url": "/images/background/16a5129869fbeb3d.png"
+		},
+		{
+			"id": "62f62600c1ef0da4",
+			"url": "/images/background/62f62600c1ef0da4.jpg"
 		}
 	],
-	"currentBackgroundImageId": "16a5129869fbeb3d",
+	"currentBackgroundImageId": "62f62600c1ef0da4",
 	"socialButtons": [
 		{
 			"id": "email",
