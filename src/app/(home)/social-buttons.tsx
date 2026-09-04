@@ -21,6 +21,7 @@ import type React from 'react'
 import { toast } from 'sonner'
 import { useSize } from '@/hooks/use-size'
 import { HomeDraggableLayer } from './home-draggable-layer'
+import { useRevealOffset, REVEAL_EASE } from '@/lib/reveal-utils'
 import { createPortal } from 'react-dom'
 
 type SocialButtonType =
@@ -106,6 +107,7 @@ export default function SocialButtons() {
 
 	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x + hiCardStyles.width / 2 - styles.width
 	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y + hiCardStyles.height / 2 + CARD_SPACING
+	const { offsetX, offsetY } = useRevealOffset(x, y, styles.width, styles.height)
 
 	if (!showStates.container) return null
 
@@ -260,7 +262,11 @@ export default function SocialButtons() {
 
 	return (
 		<HomeDraggableLayer cardKey='socialButtons' x={x} y={y} width={styles.width} height={styles.height}>
-			<motion.div className='absolute max-sm:static' animate={{ left: x, top: y }} initial={{ left: x, top: y }}>
+			<motion.div
+				className='absolute max-sm:static'
+				animate={{ left: x + offsetX, top: y + offsetY }}
+				initial={{ left: x, top: y }}
+				transition={{ left: { duration: 0.7, ease: REVEAL_EASE }, top: { duration: 0.7, ease: REVEAL_EASE } }}>
 				<div className='absolute top-0 left-0 flex flex-row-reverse items-center gap-3 max-sm:static' style={{ width: styles.width }}>
 					{sortedButtons.map(button => renderButton(button))}
 				</div>
