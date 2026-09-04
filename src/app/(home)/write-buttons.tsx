@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useSize } from '@/hooks/use-size'
 import DotsSVG from '@/svgs/dots.svg'
 import { HomeDraggableLayer } from './home-draggable-layer'
+import { useRevealOffset, REVEAL_EASE } from '@/lib/reveal-utils'
 
 export default function WriteButton() {
 	const center = useCenterStore()
@@ -24,16 +25,21 @@ export default function WriteButton() {
 		setTimeout(() => setShow(true), styles.order * ANIMATION_DELAY * 1000)
 	}, [styles.order])
 
+	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x + CARD_SPACING + hiCardStyles.width / 2
+	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y - clockCardStyles.offset - styles.height - CARD_SPACING / 2 - clockCardStyles.height
+	const { offsetX, offsetY } = useRevealOffset(x, y, styles.width, styles.height)
+
 	if (maxSM) return null
 
 	if (!show) return null
 
-	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x + CARD_SPACING + hiCardStyles.width / 2
-	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y - clockCardStyles.offset - styles.height - CARD_SPACING / 2 - clockCardStyles.height
-
 	return (
 		<HomeDraggableLayer cardKey='writeButtons' x={x} y={y} width={styles.width} height={styles.height}>
-			<motion.div initial={{ left: x, top: y }} animate={{ left: x, top: y }} className='absolute flex items-center gap-4'>
+			<motion.div
+				initial={{ left: x, top: y }}
+				animate={{ left: x + offsetX, top: y + offsetY }}
+				transition={{ left: { duration: 0.7, ease: REVEAL_EASE }, top: { duration: 0.7, ease: REVEAL_EASE } }}
+				className='absolute flex items-center gap-4'>
 				<motion.button
 					onClick={() => router.push('/write')}
 					initial={{ opacity: 0, scale: 0.6 }}

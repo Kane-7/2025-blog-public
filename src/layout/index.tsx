@@ -1,5 +1,6 @@
 'use client'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { useCenterInit } from '@/hooks/use-center'
 import BlurredBubblesBackground from './backgrounds/blurred-bubbles'
 import NavCard from '@/components/nav-card'
@@ -7,6 +8,7 @@ import { Toaster } from 'sonner'
 import { CircleCheckIcon, InfoIcon, Loader2Icon, OctagonXIcon, TriangleAlertIcon } from 'lucide-react'
 import { useSize, useSizeInit } from '@/hooks/use-size'
 import { useConfigStore } from '@/app/(home)/stores/config-store'
+import { useRevealStore } from '@/app/(home)/stores/reveal-store'
 import { ScrollTopButton } from '@/components/scroll-top-button'
 import MusicCard from '@/components/music-card'
 
@@ -15,6 +17,15 @@ export default function Layout({ children }: PropsWithChildren) {
 	useSizeInit()
 	const { cardStyles, siteContent, regenerateKey } = useConfigStore()
 	const { maxSM, init } = useSize()
+	const toggleReveal = useRevealStore(state => state.toggle)
+	const setRevealed = useRevealStore(state => state.setRevealed)
+	const pathname = usePathname()
+	const isHome = pathname === '/'
+
+	// 切换页面时退出「显露桌面」状态,避免状态跨页面残留
+	useEffect(() => {
+		setRevealed(false)
+	}, [pathname, setRevealed])
 
 	const backgroundImages = (siteContent.backgroundImages ?? []) as Array<{ id: string; url: string }>
 	const currentBackgroundImageId = siteContent.currentBackgroundImageId
@@ -52,7 +63,14 @@ export default function Layout({ children }: PropsWithChildren) {
 			)}
 			<BlurredBubblesBackground colors={siteContent.backgroundColors} regenerateKey={regenerateKey} />
 
-			<main className='relative z-10 h-full'>
+			<main
+				className='relative z-10 h-full'
+				onClick={e => {
+					if (maxSM || !isHome) return
+					// 点击落在任意卡片内则不触发,只有点空白背景才「显露桌面」
+					if ((e.target as HTMLElement).closest('.card')) return
+					toggleReveal()
+				}}>
 				{children}
 				<NavCard />
 

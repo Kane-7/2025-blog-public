@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 import { useSize } from '@/hooks/use-size'
+import { useRevealOffset, REVEAL_EASE } from '@/lib/reveal-utils'
 
 interface Props {
 	className?: string
@@ -18,6 +19,7 @@ interface Props {
 
 export default function Card({ children, order, width, height, x, y, className }: Props) {
 	const { maxSM, init } = useSize()
+	const { offsetX, offsetY } = useRevealOffset(x, y, width, height)
 	let [show, setShow] = useState(false)
 	if (maxSM && init) order = 0
 
@@ -37,9 +39,14 @@ export default function Card({ children, order, width, height, x, y, className }
 			<motion.div
 				className={cn('card squircle', className)}
 				initial={{ opacity: 0, scale: 0.6, left: x, top: y, width, height }}
-				animate={{ opacity: 1, scale: 1, left: x, top: y, width, height }}
+				animate={{ opacity: 1, scale: 1, left: x + offsetX, top: y + offsetY, width, height }}
 				whileHover={{ scale: 1.05 }}
-				whileTap={{ scale: 0.95 }}>
+				whileTap={{ scale: 0.95 }}
+				transition={{
+					// 仅位置用柔和长动画,透明度/缩放保持原有节奏
+					left: { duration: 0.7, ease: REVEAL_EASE },
+					top: { duration: 0.7, ease: REVEAL_EASE }
+				}}>
 				{children}
 			</motion.div>
 		)
