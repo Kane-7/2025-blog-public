@@ -11,14 +11,15 @@ import { useConfigStore } from '@/app/(home)/stores/config-store'
 import { useRevealStore } from '@/app/(home)/stores/reveal-store'
 import { ScrollTopButton } from '@/components/scroll-top-button'
 import MusicCard from '@/components/music-card'
+import SearchOverlay from '@/components/search-overlay'
 
 export default function Layout({ children }: PropsWithChildren) {
 	useCenterInit()
 	useSizeInit()
 	const { cardStyles, siteContent, regenerateKey } = useConfigStore()
 	const { maxSM, init } = useSize()
-	const toggleReveal = useRevealStore(state => state.toggle)
 	const setRevealed = useRevealStore(state => state.setRevealed)
+	const setSearchVisible = useRevealStore(state => state.setSearchVisible)
 	const pathname = usePathname()
 	const isHome = pathname === '/'
 
@@ -69,12 +70,23 @@ export default function Layout({ children }: PropsWithChildren) {
 					if (maxSM || !isHome) return
 					// 点击落在任意卡片内则不触发,只有点空白背景才「显露桌面」
 					if ((e.target as HTMLElement).closest('.card')) return
-					toggleReveal()
+					// 点击搜索框本体不触发回退（组件内已 stopPropagation,此处为双保险）
+					if ((e.target as HTMLElement).closest('[data-search-overlay]')) return
+					const { revealed } = useRevealStore.getState()
+					if (!revealed) {
+						// 进入:UI 飞走,搜索框延迟 0.7s 后由组件自动显示
+						setRevealed(true)
+					} else {
+						// 回退:搜索框先向上滑出,0.4s 后 UI 平滑回来
+						setSearchVisible(false)
+						window.setTimeout(() => setRevealed(false), 400)
+					}
 				}}>
-				{children}
-				<NavCard />
+					{children}
+					<NavCard />
 
-				{!maxSM && cardStyles.musicCard?.enabled !== false && <MusicCard />}
+					{!maxSM && cardStyles.musicCard?.enabled !== false && <MusicCard />}
+				<SearchOverlay />
 			</main>
 
 			{maxSM && init && <ScrollTopButton className='bg-brand/20 fixed right-6 bottom-8 z-50 shadow-md' />}

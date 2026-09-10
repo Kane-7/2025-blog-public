@@ -4,12 +4,14 @@ import { create } from 'zustand'
 
 interface RevealState {
 	revealed: boolean
-	toggle: () => void
+	searchVisible: boolean
 	setRevealed: (v: boolean) => void
+	setSearchVisible: (v: boolean) => void
 }
 
-export const useRevealStore = create<RevealState>((set, get) => ({
+export const useRevealStore = create<RevealState>(set => ({
 	revealed: false,
-	toggle: () => set({ revealed: !get().revealed }),
-	setRevealed: v => set({ revealed: v })
+	searchVisible: false,
+	setRevealed: v => set({ revealed: v }),
+	setSearchVisible: v => set({ searchVisible: v })
 }))
